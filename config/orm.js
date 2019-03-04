@@ -11,7 +11,7 @@ var orm = {
     });
   },
   create: function(whatToSelect, table, orderCol) {
-    var queryString = "SELECT ?? FROM ?? ORDER BY ?? DESC";
+    var queryString = "SELECT ?? FROM burger_name";
     console.log(queryString);
     connection.query(queryString, [whatToSelect, table, orderCol], function(err, result) {
       if (err) throw err;
