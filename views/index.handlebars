@@ -1,38 +1,62 @@
-<h1>Burgers!</h1>
+<h1 align="center">Eat More Burgers!</h1>
+<h2 align="center"> <strong>Place your order here!</strong></h2>
+<div class=" container content">
 
-<h2>Eat More Burgers!</h2>
-
-<ul>
-  {{#each burger}}
-    {{#unless devoured}}
-      {{> burgers/burger-block devoured=true}}
-    {{/unless}}
-  {{/each}}
-</ul>
-
-<h2>Burgers that are Devoured!</h2>
-
-<ul>
-  {{#each burger}}
-    {{#if devoured}}
-      {{> burgers/burger-block devoured=false}}
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a Burger</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="ca">Burger Name:</label>
-    <input type="text" id="ca" name="name">
+  <div class="row">
+    <form method="POST" "create-form text-center" action="/burgers/insertOne">
+      <input type="text" required placeholder="TIME TO ORDER UP!" class="form-control" name="burger_name" value=""
+        id="enter_text">
+      <button type="submit" class="btn btn-success" id="addburger">Add Burger</button>
+    </form>
   </div>
+</div>
 
-  <div class="form-group">
-    <label for="devoured">Devoured?</label><br>
-    <input type="radio" name="devoured" value="1" checked> Devoured!<br>
-    <input type="radio" name="devoured" value="0"> Make More Burgers!!
+<br>
+<div class="row">
+  <div class="container burgers">
+    <div class="col-6">
+      <div class="panel-heading text-center" id="left"><strong>Burgers ready to Devoure</strong></div>
+      {{#each burgers}}
+      {{#unless this.devoured}}
+
+      <div class="content-burger_list" id={{this.id}},>
+
+        <img src="https://res.cloudinary.com/ymuhammad/image/upload/v1564951796/Burger-Food-PNG_le2hc5.png" alt="p1">
+        <pre> {{this.id}}, {{this.burger_name}} </pre>
+
+        <form method="POST" action="/burgers/update?_method=put" class="button-size">
+          <input type="hidden" name="burger_id" type="text" value={{this.id}}>
+          <br>
+          <button type="submit" class="btn btn-defult"> DEVOUR IT</button>
+        </form>
+
+      </div>
+
+      {{/unless}}
+      {{/each}}
+    </div>
+
+    <div class="col-6">
+      <div class="panel-heading text-center" id="right"><strong>All your devoured burgers</strong></div>
+      <div class="col-xs-6 text-center" class="task">
+        {{#each burgers}}
+        {{#if this.devoured}}
+
+        <div class="content-burger_list" id={{this.id}}>
+
+          <img src="https://res.cloudinary.com/ymuhammad/image/upload/v1564951796/Burger-Food-PNG_le2hc5.png" alt="p1">
+          <pre> {{this.id}}, {{this.burger_name}} </pre>
+
+          <form action="/{{this.id}}?_method=DELETE" method="POST">
+            <input type="hidden" type="text" placeholder="{{this.id}}, {{this.burger_name}}">
+            <br>
+            <button class="deleteBurger" type="click">Digest Burger</button>
+          </form>
+
+        </div>
+        {{/if}}
+        {{/each}}
+      </div>
+    </div>
   </div>
-
-  <button type="submit">Add Burger</button>
-</form>
+</div>
