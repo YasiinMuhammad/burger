@@ -31,7 +31,7 @@ p, .devoured{
     height: 60px;
     border-radius: 4px;
     margin-top: 20px;
-    width: 392px
+    width: 415px
 }
 
 .content {
@@ -66,7 +66,7 @@ img {
 }
 
 body{
-background-repeat:no-repeat;
+/* background-repeat:no-repeat; */
 background-position: center;
 background-size: 100%;
 background-attachment: fixed;
