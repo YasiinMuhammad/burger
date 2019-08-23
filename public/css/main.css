@@ -13,6 +13,9 @@ h1{
     margin: 0 auto;
     overflow: auto;
 }
+.heading1{
+    padding: 20%;
+}
 .burger_home{
     height: 300px;
     width: 500px;
